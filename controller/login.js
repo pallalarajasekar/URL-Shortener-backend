@@ -210,7 +210,7 @@ const activateAccount = async (email) => {
 
 const createShortUrl = async (url, email) => {
     let checkURL = await urlShort.findOne({ url, email }).exec();
-    console.log(checkURL);
+    console.log("--------->" +checkURL);
     return new Promise(function (resolve, reject) {
         shortUrl.short(url, (err, urlLink) => {
             if (err) {
@@ -241,10 +241,10 @@ const getShortUrl = async (email) => {
     return urlData;
 }
 
-const clickcount = async (email, url) => {
+const clickcount = async (url, email) => {
     console.log(url);
     console.log(email);
-    let click_url = await urlShort.findOne().exec();
+    let click_url = await urlShort.findOne({url, email}).exec();
     console.log(click_url)
     if(click_url){
         let clicks = click_url.clicks + 1;

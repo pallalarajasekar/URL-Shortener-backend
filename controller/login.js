@@ -32,7 +32,7 @@ const registerUser = async (firstname, lastname, email, password) => {
             }
         });
         var shrt_url;
-        shortUrl.short(`http://localhost:4200/activate/${email}`, function (err, url) {
+        shortUrl.short(`https://mystifying-kalam-9f5975.netlify.app/activate/${email}`, function (err, url) {
             shrt_url = url;
             console.log(shrt_url);
             let info = mailer.sendMail({
@@ -120,7 +120,7 @@ const forgotPassword = async (email) => {
             to: checkEmail.email, // list of receivers
             subject: "Password Reset ✔", // Subject line
             text: "Password Reset Ramdom String",  // plain text body
-            html: `<a href="http://localhost:4200/reset/${email}/${string}">Click on this link</a>`,
+            html: `<a href="https://mystifying-kalam-9f5975.netlify.app/reset/${email}/${string}">Click on this link</a>`,
         });
         const updateString = await User.updateOne({ email: checkEmail.email }, {
             randomString: string
